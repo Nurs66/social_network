@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+
+  backend:
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    entrypoint: /app/docker/wsgi-entrypoint.sh
+    ports:
+      - 8000:8000
+    networks:
+      - my-network
+
+
+volumes:
+  static_volume:
+  postgres_data:
+
+networks:
+  my-network:
